@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <div th:replace="~{cabecalho :: head}"></div>
+    <title>Crud Manager - Livro</title>
+</head>
+
+<body>
+    <div th:replace="~{cabecalho :: navbar}"></div>
+    <div class="container my-4">
+        <h2>Livro</h2>
+        <form th:action="@{/books/save}" method="POST" th:object="${book}">
+            <input type="hidden" id="id" th:field="*{id}">
+
+            <span class="text-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
+            <input type="text" placeholder="Título" class="form-control mb-4 col-4" th:field="*{title}">
+
+            <span class="text-danger" th:if="${#fields.hasErrors('publishYear')}" th:errors="*{publishYear}"></span>
+            <input type="number" placeholder="Ano de Publicação" class="form-control mb-4 col-4" th:field="*{publishYear}">
+
+            <span class="text-danger" th:if="${#fields.hasErrors('author')}" th:errors="*{author}"></span>
+            <select class="form-control mb-4 col-4" th:field="*{author}">
+                <option value="">-- Selecione um Autor --</option>
+                <option th:each="user : ${usuarios}" th:value="${user.id}" th:text="${user.name}"></option>
+            </select>
+
+            <span class="text-danger" th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></span>
+            <select class="form-control mb-4 col-4" th:field="*{category}">
+                <option value="">-- Selecione uma Categoria --</option>
+                <option th:each="cat : ${categorias}" th:value="${cat.id}" th:text="${cat.name}"></option>
+            </select>
+
+            <button type="submit" class="btn btn-info col-2">Salvar</button>
+        </form>
+        <hr>
+        <a th:href="@{/books}">Livros</a>
+    </div>
+</body>
+</html>

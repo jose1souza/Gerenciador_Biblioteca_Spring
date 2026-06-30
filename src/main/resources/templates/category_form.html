@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <div th:replace="cabecalho :: head"></div>
+    <title>Crud Manager - Categoria</title>
+</head>
+
+<body>
+    <div th:replace="cabecalho :: navbar"></div>
+    <div class="container my-2">
+        <h2>Categoria</h2>
+        <form th:action="@{/categories/save}" 
+              method="POST"
+              th:object="${category}">
+            <input type="hidden" id="id" th:field="*{id}">
+
+            <span class="text-danger"
+                  th:if="${#fields.hasErrors('name')}"
+                  th:errors="*{name}">
+            </span>
+            <input type="text" placeholder="Nome" 
+                   class="form-control mb-4 col-4"
+                   th:field="*{name}">
+
+            <span class="text-danger"
+                  th:if="${#fields.hasErrors('description')}"
+                  th:errors="*{description}">
+            </span>
+            <input type="text" placeholder="Descrição" 
+                   class="form-control mb-4 col-4"
+                   th:field="*{description}">
+
+            <span class="text-danger"
+                  th:if="${#fields.hasErrors('code')}"
+                  th:errors="*{code}">
+            </span>
+            <input type="text" placeholder="Código" 
+                   class="form-control mb-4 col-4"
+                   th:field="*{code}">
+
+            <span class="text-danger"
+                  th:if="${#fields.hasErrors('sector')}"
+                  th:errors="*{sector}">
+            </span>
+            <input type="text" placeholder="Setor" 
+                   class="form-control mb-4 col-4"
+                   th:field="*{sector}">
+
+            <button type="submit" class="btn btn-info col-2">Salvar</button>
+        </form>
+        <hr>
+        <a th:href="@{/categories}">Categorias</a>
+    </div>
+</body>
+</html>
