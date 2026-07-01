@@ -1,9 +1,13 @@
 package br.edu.ifsuldeminas.mch.webii.crudmanager.spring.model.entities;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity(name = "categorias")
@@ -24,6 +28,9 @@ public class Category {
 
     @NotBlank(message = "O setor não pode ser vazio.")
     private String sector;
+    
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Book> livros;
 
     public Integer getId() {
         return id;

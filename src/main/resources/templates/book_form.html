@@ -22,13 +22,11 @@
 
             <span class="text-danger" th:if="${#fields.hasErrors('author')}" th:errors="*{author}"></span>
             <select class="form-control mb-4 col-4" th:field="*{author}">
-                <option value="">-- Selecione um Autor --</option>
                 <option th:each="user : ${usuarios}" th:value="${user.id}" th:text="${user.name}"></option>
             </select>
 
             <span class="text-danger" th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></span>
             <select class="form-control mb-4 col-4" th:field="*{category}">
-                <option value="">-- Selecione uma Categoria --</option>
                 <option th:each="cat : ${categorias}" th:value="${cat.id}" th:text="${cat.name}"></option>
             </select>
 
